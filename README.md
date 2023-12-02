@@ -1,4 +1,4 @@
-# QuizMyCode
+# QuizMyCodeKnowledge
 Online Quiz on JavaScript fundamentals 
 
 ## Description 
