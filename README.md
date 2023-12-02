@@ -1,5 +1,5 @@
 # QuizMyCode
-Online Quiz on Coding Principles
+Online Quiz on JavaScript fundamentals 
 
 ## Description 
 
