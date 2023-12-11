@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/style.css">
-    <title>Coding Knowledge Test</title>
+      <title>Coding Knowledge Test</title>
 </head>
 
 <body>
@@ -13,7 +13,6 @@
         <h1>Quiz on JavaScript Fundamentals</h1>
     </header>
     <main>
-
         <section>
             <div class="start-quiz">
                 <button class="start" id="startBtn" onclick="startGame()">Start</button>
@@ -21,10 +20,12 @@
             <div class="quiz-continued" id="questions" style="display: none;">
                 <p id="questionText"></p>
                 <div class="checkbox-group">
-                    <label><input type="checkbox" id="a"></label>
-                    <label><input type="checkbox" id="b"></label>
-                    <label><input type="checkbox" id="c"></label>
-                    <label><input type="checkbox" id="d"></label>
+                    <ul>
+                       <li><label><input type="checkbox" id="a"> <span id="choice1"></span></label></li> 
+                       <li> <label><input type="checkbox" id="b"> <span id="choice2"></span></label></li> 
+                        <li><label><input type="checkbox" id="c"> <span id="choice3"></span></label></li> 
+                        <li><label><input type="checkbox" id="d"> <span id="choice4"></span></label></li> 
+                    </ul>
                 </div>
             </div>
             <section class="quiz-score-section" id="gameOverContainer" style="display: none;">
@@ -36,5 +37,8 @@
                 </div>
             </section>
         </section>
-
     </main>
+    <script src="/assets/js/scripts.js"></script>
+</body>
+
+</html>

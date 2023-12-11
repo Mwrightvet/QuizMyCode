@@ -164,3 +164,76 @@ var questions = [
     }
 ];
 
+// Global variables
+var currentQuestionIndex = 0;
+var score = 0;
+var timer;
+
+// Function to start the game
+function startGame() {
+    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("questions").style.display = "block";
+    showQuestion();
+    startTimer();
+}
+
+// Function to display a question
+function showQuestion() {
+    var currentQuestion = questions[currentQuestionIndex];
+    document.getElementById("questionText").innerText = currentQuestion.question;
+
+    // Display answer choices based on your HTML structure
+    document.getElementById("a").nextSibling.textContent = currentQuestion.choices[0];
+    document.getElementById("b").nextSibling.textContent = currentQuestion.choices[1];
+    document.getElementById("c").nextSibling.textContent = currentQuestion.choices[2];
+    document.getElementById("d").nextSibling.textContent = currentQuestion.choices[3];
+}
+
+// Function to check the selected answer
+function checkAnswer(choiceIndex) {
+    var currentQuestion = questions[currentQuestionIndex];
+
+    // Check if the selected answer is correct
+    if (choiceIndex === currentQuestion.correct) {
+        score++;
+    } else {
+        // Subtract time from the clock (implement this part)
+    }
+
+    // Move to the next question
+    currentQuestionIndex++;
+
+    // Check if there are more questions
+    if (currentQuestionIndex < questions.length) {
+        // Display the next question
+        showQuestion();
+    } else {
+        // End the game if all questions are answered
+        endGame();
+    }
+}
+
+// Function to start the timer
+function startTimer() {
+    // Implement the timer logic here
+    timer = setInterval(function () {
+        // Update timer display and check if it reaches 0
+    }, 1000);
+}
+
+// Function to end the game
+function endGame() {
+    // Stop the timer
+    clearInterval(timer);
+    document.getElementById("questions").style.display = "none";
+    document.getElementById("gameOverContainer").style.display = "block";
+    document.getElementById("score").innerText = score;
+}
+
+// Function to restart the game
+function restartGame() {
+    currentQuestionIndex = 0;
+    score = 0;
+    document.getElementById("gameOverContainer").style.display = "none";
+    document.getElementById("startBtn").style.display = "block";
+}
