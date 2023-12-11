@@ -22,10 +22,36 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+h3 {
+    text-align: center;
+    font-size: medium;
+}
+
 .quiz-continued {
     border: 1px solid #ccc;
     padding: 20px;
     margin-top: 20px;
+}
+
+button {
+    background-color: rgb(40, 23, 58);
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 4px 2px;
+    display: inline-block; /* changed from inline */
+}
+
+button.next,
+button.restart,
+.start-quiz {
+    /* Consolidated common button styles */
+    display: inline-block;
+    margin: 4px 2px;
 }
 
 .start-quiz {
@@ -33,7 +59,8 @@ main {
     margin-bottom: 20px;
 }
 
-.radio-group ul {
+.radio-group ul,
+.radio-group li {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -41,12 +68,13 @@ main {
 
 .radio-group li {
     margin-bottom: 10px;
-    list-style: none; /* Ensure list item markers are removed */
 }
+
 /* Additional styles for radio buttons in the radio group */
 .radio-group input[type="radio"] {
     margin-right: 5px; /* added spacing between the radio button and the label */
 }
+
 .quiz-score-section {
     display: none;
     text-align: center;
