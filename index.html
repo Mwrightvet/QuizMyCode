@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/style.css">
-    <title>Document</title>
+    <title>Coding Knowledge Test</title>
 </head>
-<header></header>
-<main>
-    <section></section>
-</main>
-<footer></footer>
-<script src="/assets/js/scripts.js"></script>
-</body>
-</html>
+
+<body>
+    <header>
+        <h1>Quiz on JavaScript Fundamentals</h1>
+    </header>
+    <main>
+
+        <section>
+            <div class="start-quiz">
+                <button class="start" id="startBtn" onclick="startGame()">Start</button>
+            </div>
+            <div class="quiz-continued" id="questions" style="display: none;">
+                <p id="questionText"></p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="a"></label>
+                    <label><input type="checkbox" id="b"></label>
+                    <label><input type="checkbox" id="c"></label>
+                    <label><input type="checkbox" id="d"></label>
+                </div>
+            </div>
+            <section class="quiz-score-section" id="gameOverContainer" style="display: none;">
+                <div class="quiz-score">
+                    <p>Game Over!</p>
+                    <p>Your score: <span id="score">0</span></p>
+                    <input type="text" id="initials" placeholder="Enter your initials">
+                    <button class="restart" onclick="restartGame()">Restart</button>
+                </div>
+            </section>
+        </section>
+
+    </main>
