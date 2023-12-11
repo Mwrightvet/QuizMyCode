@@ -237,3 +237,25 @@ function restartGame() {
     document.getElementById("gameOverContainer").style.display = "none";
     document.getElementById("startBtn").style.display = "block";
 }
+
+// Function to check the selected answer and move to the next question
+function checkAndMoveToNext() {
+    // Get the selected choices
+    var selectedChoices = [];
+    if (document.getElementById("a").checked) selectedChoices.push(0);
+    if (document.getElementById("b").checked) selectedChoices.push(1);
+    if (document.getElementById("c").checked) selectedChoices.push(2);
+    if (document.getElementById("d").checked) selectedChoices.push(3);
+
+    // Check if any choice is selected
+    if (selectedChoices.length === 0) {
+        // Display an alert or handle the case where no choice is selected
+        alert("Please select an answer before moving to the next question.");
+        return;
+    }
+
+    // Check the answers and move to the next question
+    selectedChoices.forEach(function (choice) {
+        checkAnswer(choice);
+    });
+}
