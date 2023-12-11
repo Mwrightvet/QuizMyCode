@@ -1,5 +1,3 @@
-/* style.css */
-
 body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
@@ -8,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: rgb(40, 23, 58);
     color: white;
     text-align: center;
     padding: 1rem;
@@ -21,7 +19,6 @@ main {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 h3 {
     text-align: center;
     font-size: medium;
@@ -43,24 +40,39 @@ button {
     text-decoration: none;
     font-size: 14px;
     margin: 4px 2px;
-    display: inline-block; /* changed from inline */
+    display: inline;
 }
-
-button.next,
-button.restart,
-.start-quiz {
-    /* Consolidated common button styles */
-    display: inline-block;
+button.next {
+    background-color: rgb(40, 23, 58);
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
     margin: 4px 2px;
+    display: inline;
 }
-
+button.restart {
+    background-color: rgb(40, 23, 58);
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 4px 2px;
+    display: inline;
+}
 .start-quiz {
     text-align: center;
     margin-bottom: 20px;
+    
 }
 
-.radio-group ul,
-.radio-group li {
+.radio-group ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -68,13 +80,12 @@ button.restart,
 
 .radio-group li {
     margin-bottom: 10px;
+    list-style: none; /* Ensure list item markers are removed */
 }
-
 /* Additional styles for radio buttons in the radio group */
 .radio-group input[type="radio"] {
     margin-right: 5px; /* added spacing between the radio button and the label */
 }
-
 .quiz-score-section {
     display: none;
     text-align: center;
