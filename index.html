@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Quiz My Code Knowledge</title>
 </head>
 
@@ -17,10 +17,10 @@
     </header>
     <main>
         <section>
-            <div><h3>To answer any of the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </h3></div>
-            <div class="start-quiz">
-                <!-- Updated onclick to call startTimer() -->
-                <button class="start" id="startBtn" onclick="startTimer"()>Start Quiz</button>
+        <h3>To answer any of the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+        </h3> 
+           <div class="start-quiz">
+                <button class="start" id="startBtn" onclick="startGame()">Start Quiz</button>
             </div>
             <div class="quiz-continued" id="questions" style="display: none;">
                 <p id="questionText"></p>
@@ -44,7 +44,11 @@
             </section>
         </section>
     </main>
-    <script src="/assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

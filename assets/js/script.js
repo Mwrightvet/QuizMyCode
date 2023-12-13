@@ -161,92 +161,95 @@ var questions = [
         correct: 0,
     }
 ];
+// Global variables
+var currentQuestionIndex = 0; //holds the questions
+var score = 0; // holds the score 
+var timer = 60000; // initial timer value
 
-var currentQuestionIndex = 0;
-var score = 0;
-var timerValue = 60; // You can set the initial timer value as per your requirement
-var timer;
-
-// Function to start the quiz
-function startQuiz() {
-    document.getElementById('startBtn').style.display = 'none';
-    document.getElementById('questions').style.display = 'block';
-    setNextQuestion();
-    timer = setInterval(function () {
-        if (timerValue <= 0 || currentQuestionIndex === questions.length) {
-            endGame();
-        } else {
-            document.getElementById('timerValue').innerText = timerValue;
-            timerValue--;
-        }
-    }, 1000);
+// Function to start the game
+function startGame() {
+    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("questions").style.display = "block";
+    showQuestion();
+    startTimer();
 }
 
-// Function to set and display the next question
-function setNextQuestion() {
+// Function to display a question
+function showQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
-    document.getElementById('questionText').innerText = currentQuestion.question;
-    for (var i = 0; i < currentQuestion.choices.length; i++) {
-        document.getElementById('choice' + (i + 1)).innerText = currentQuestion.choices[i];
-    }
+    document.getElementById("questionText").innerText = currentQuestion.question;
+
+    // Display answer choices based on your HTML structure
+    document.getElementById("a").nextSibling.textContent = currentQuestion.choices[0];
+    document.getElementById("b").nextSibling.textContent = currentQuestion.choices[1];
+    document.getElementById("c").nextSibling.textContent = currentQuestion.choices[2];
+    document.getElementById("d").nextSibling.textContent = currentQuestion.choices[3];
 }
 
-// Function to check user's answer and move to the next question
-function checkAndMoveToNext() {
-    var userChoice = getSelectedChoice();
-    if (userChoice === questions[currentQuestionIndex].correct) {
+// Function to check the selected answer
+function checkAnswer(choiceIndex) {
+    var currentQuestion = questions[currentQuestionIndex];
+
+    // Check if the selected answer is correct
+    if (choiceIndex === currentQuestion.correct) {
         score++;
     } else {
-        timerValue -= 10; // Deduct 10 seconds for incorrect answers
+        // Subtract time from the clock (implement this part)
     }
 
+    // Move to the next question
     currentQuestionIndex++;
+
+    // Check if there are more questions
     if (currentQuestionIndex < questions.length) {
-        setNextQuestion();
+        // Display the next question
+        showQuestion();
     } else {
+        // End the game if all questions are answered
         endGame();
     }
 }
 
-// Function to get the user's selected choice
-function getSelectedChoice() {
-    var choices = document.getElementsByName('answer');
-    for (var i = 0; i < choices.length; i++) {
-        if (choices[i].checked) {
-            return i;
-        }
-    }
-    return -1; // Return -1 if no choice is selected
+// Function to start the timer
+function startTimer() {
+    // Implement the timer logic here
+    startBtn.style.display = "none"
+    timer = setInterval(function () {
+        // Update timer display and check if it reaches 0
+    timer = timer -1000;
+    }, 1000);
 }
 
-// Function to end the quiz
+// Function to end the game
 function endGame() {
+    // Stop the timer
     clearInterval(timer);
-    document.getElementById('questions').style.display = 'none';
-    document.getElementById('gameOverContainer').style.display = 'block';
-    document.getElementById('finalScore').innerText = score;
+    document.getElementById("questions").style.display = "none";
+    document.getElementById("gameOverContainer").style.display = "block";
+    document.getElementById("score").innerText = score;
 }
 
-// Save initials and score
-function saveScore() {
-    var initials = document.getElementById('initials').value;
-    // You can implement logic to save the score and initials as per your requirements
-    console.log("Initials: " + initials + ", Score: " + score);
-}
-
-// Rrestart the quiz
+// Function to restart the game
 function restartGame() {
     currentQuestionIndex = 0;
     score = 0;
-    timerValue = 60; // Reset the timer value
-    document.getElementById('gameOverContainer').style.display = 'none';
-    document.getElementById('startBtn').style.display = 'block';
-    document.getElementById('initials').value = '';
-    startQuiz();
+    document.getElementById("gameOverContainer").style.display = "none";
+    document.getElementById("startBtn").style.display = "block";
 }
 
-// Initial setup
-document.getElementById('startBtn').addEventListener('click', startQuiz);
-document.getElementById('nextBtn').addEventListener('click', checkAndMoveToNext);
-document.getElementById('saveBtn').addEventListener('click', saveScore);
-document.getElementById('restartBtn').addEventListener('click', restartGame);
+// Function to check the selected answer and move to the next question
+function checkAndMoveToNext() {
+    // Get the selected choice
+    var selectedChoice = document.querySelector('input[name="answer"]:checked');
+
+    // Check if any choice is selected
+    if (!selectedChoice) {
+        // Display an alert or handle the case where no choice is selected
+        alert("Please select an answer before moving to the next question.");
+        return;
+    }
+
+    // Check the answer and move to the next question
+    var choiceIndex = parseInt(selectedChoice.id.charAt(1)); // Extract the index from the ID
+    checkAnswer(choiceIndex);
+}
