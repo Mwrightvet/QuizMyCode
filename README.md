@@ -27,11 +27,10 @@ Online timed quiz on JavaScript fundamentals that returns and stores the score
 8. The user can save the score using their initials. 
 
 ## URL 
+https://mwrightvet.github.io/QuizMyCodeKnowledge/
 
 ## GIF 
-https://github.com/Mwrightvet/QuizMyCodeKnowledge/blob/main/assets/20231213_004718.gif
-
-
+![QuizMyCodeknowledge](assets/20231213_004718.gif)
 
 ## Credits 
 - https://quizlet.com/117039332/javascript-quiz-flash-cards/ 
