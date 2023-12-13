@@ -26,6 +26,12 @@ Online timed quiz on JavaScript fundamentals that returns and stores the score
 7. The quiz ends when all questions are answered or the timer/score reaches 0.
 8. The user can save the score using their initials. 
 
+## URL 
+
+## GIF 
+https://github.com/Mwrightvet/QuizMyCodeKnowledge/blob/main/assets/20231213_004718.gif
+
+
 
 ## Credits 
 - https://quizlet.com/117039332/javascript-quiz-flash-cards/ 
