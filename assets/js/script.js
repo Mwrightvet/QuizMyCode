@@ -1,4 +1,3 @@
-
 // Quiz Questions and Choices
 var questions = [
     {
@@ -112,7 +111,6 @@ var questions = [
         correct: 3,
     },
     {
-
         question: "Inside of which HTML element do we link an external stylesheet?",
         choices: [
             "<link rel='stylesheet' type='text/css' href='styles.css'>",
@@ -164,98 +162,91 @@ var questions = [
     }
 ];
 
-// Global variables
 var currentQuestionIndex = 0;
 var score = 0;
+var timerValue = 60; // You can set the initial timer value as per your requirement
 var timer;
 
-// Function to start the game
-function startGame() {
-    document.getElementById("startBtn").style.display = "none";
-    document.getElementById("questions").style.display = "block";
-    showQuestion();
-    startTimer();
+// Function to start the quiz
+function startQuiz() {
+    document.getElementById('startBtn').style.display = 'none';
+    document.getElementById('questions').style.display = 'block';
+    setNextQuestion();
+    timer = setInterval(function () {
+        if (timerValue <= 0 || currentQuestionIndex === questions.length) {
+            endGame();
+        } else {
+            document.getElementById('timerValue').innerText = timerValue;
+            timerValue--;
+        }
+    }, 1000);
 }
 
-// Function to display a question
-function showQuestion() {
+// Function to set and display the next question
+function setNextQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
-    document.getElementById("questionText").innerText = currentQuestion.question;
-
-    // Display answer choices based on your HTML structure
-    document.getElementById("a").nextSibling.textContent = currentQuestion.choices[0];
-    document.getElementById("b").nextSibling.textContent = currentQuestion.choices[1];
-    document.getElementById("c").nextSibling.textContent = currentQuestion.choices[2];
-    document.getElementById("d").nextSibling.textContent = currentQuestion.choices[3];
+    document.getElementById('questionText').innerText = currentQuestion.question;
+    for (var i = 0; i < currentQuestion.choices.length; i++) {
+        document.getElementById('choice' + (i + 1)).innerText = currentQuestion.choices[i];
+    }
 }
 
-// Function to check the selected answer
-function checkAnswer(choiceIndex) {
-    var currentQuestion = questions[currentQuestionIndex];
-
-    // Check if the selected answer is correct
-    if (choiceIndex === currentQuestion.correct) {
+// Function to check user's answer and move to the next question
+function checkAndMoveToNext() {
+    var userChoice = getSelectedChoice();
+    if (userChoice === questions[currentQuestionIndex].correct) {
         score++;
     } else {
-        // Subtract time from the clock (implement this part)
+        timerValue -= 10; // Deduct 10 seconds for incorrect answers
     }
 
-    // Move to the next question
     currentQuestionIndex++;
-
-    // Check if there are more questions
     if (currentQuestionIndex < questions.length) {
-        // Display the next question
-        showQuestion();
+        setNextQuestion();
     } else {
-        // End the game if all questions are answered
         endGame();
     }
 }
 
-// Function to start the timer
-function startTimer() {
-    // Implement the timer logic here
-    timer = setInterval(function () {
-        // Update timer display and check if it reaches 0
-    }, 1000);
+// Function to get the user's selected choice
+function getSelectedChoice() {
+    var choices = document.getElementsByName('answer');
+    for (var i = 0; i < choices.length; i++) {
+        if (choices[i].checked) {
+            return i;
+        }
+    }
+    return -1; // Return -1 if no choice is selected
 }
 
-// Function to end the game
+// Function to end the quiz
 function endGame() {
-    // Stop the timer
     clearInterval(timer);
-    document.getElementById("questions").style.display = "none";
-    document.getElementById("gameOverContainer").style.display = "block";
-    document.getElementById("score").innerText = score;
+    document.getElementById('questions').style.display = 'none';
+    document.getElementById('gameOverContainer').style.display = 'block';
+    document.getElementById('finalScore').innerText = score;
 }
 
-// Function to restart the game
+// Save initials and score
+function saveScore() {
+    var initials = document.getElementById('initials').value;
+    // You can implement logic to save the score and initials as per your requirements
+    console.log("Initials: " + initials + ", Score: " + score);
+}
+
+// Rrestart the quiz
 function restartGame() {
     currentQuestionIndex = 0;
     score = 0;
-    document.getElementById("gameOverContainer").style.display = "none";
-    document.getElementById("startBtn").style.display = "block";
+    timerValue = 60; // Reset the timer value
+    document.getElementById('gameOverContainer').style.display = 'none';
+    document.getElementById('startBtn').style.display = 'block';
+    document.getElementById('initials').value = '';
+    startQuiz();
 }
 
-// Function to check the selected answer and move to the next question
-function checkAndMoveToNext() {
-    // Get the selected choices
-    var selectedChoices = [];
-    if (document.getElementById("a").checked) selectedChoices.push(0);
-    if (document.getElementById("b").checked) selectedChoices.push(1);
-    if (document.getElementById("c").checked) selectedChoices.push(2);
-    if (document.getElementById("d").checked) selectedChoices.push(3);
-
-    // Check if any choice is selected
-    if (selectedChoices.length === 0) {
-        // Display an alert or handle the case where no choice is selected
-        alert("Please select an answer before moving to the next question.");
-        return;
-    }
-
-    // Check the answers and move to the next question
-    selectedChoices.forEach(function (choice) {
-        checkAnswer(choice);
-    });
-}
+// Initial setup
+document.getElementById('startBtn').addEventListener('click', startQuiz);
+document.getElementById('nextBtn').addEventListener('click', checkAndMoveToNext);
+document.getElementById('saveBtn').addEventListener('click', saveScore);
+document.getElementById('restartBtn').addEventListener('click', restartGame);

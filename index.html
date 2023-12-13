@@ -17,9 +17,10 @@
     </header>
     <main>
         <section>
-            <div><h3>To Answer Any of the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </h3></div>
+            <div><h3>To answer any of the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds! </h3></div>
             <div class="start-quiz">
-                <button class="start" id="startBtn" onclick="startGame()">Start Quiz</button>
+                <!-- Updated onclick to call startTimer() -->
+                <button class="start" id="startBtn" onclick="startTimer()">Start Quiz</button>
             </div>
             <div class="quiz-continued" id="questions" style="display: none;">
                 <p id="questionText"></p>
